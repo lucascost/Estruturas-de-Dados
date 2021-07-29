@@ -6,28 +6,29 @@ typedef struct no{
     struct no *prox;
 }t_no;
 
-t_no *cria_lista (int n){
-    t_no *aux;
+int preencher(){
+    int n;
+    system("cls");
+    printf("Informe o valor:\n");
+    scanf("%i",&n);
+
+    return n;
+}
+
+t_no *criar_no (){
+    t_no *aux; //
     aux = malloc(sizeof(t_no));
-    (*aux).valor = n;
+    (*aux).valor = preencher();
     (*aux).prox = NULL;
 
     return aux;
-}
-
-void muda_valor(t_no *elemento){
-    int num;
-    system("cls");
-    printf("Informe o novo valor:\n");
-    scanf("%i",&num);
-    (*elemento).valor = num;
 }
 
 int main() {
     t_no *lista;
     int r;
 
-    lista = cria_lista(0);
+    lista = criar_no();
 
     do{
         system("cls");
@@ -41,7 +42,7 @@ int main() {
         }
 
         if(r==2){
-            muda_valor(lista);
+            (*lista).valor = preencher();
         }
 
     }while(r<3);
@@ -51,3 +52,4 @@ int main() {
 
     return 0;
 }
+
