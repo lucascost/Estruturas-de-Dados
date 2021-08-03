@@ -65,12 +65,16 @@ int main() {
         }
 
        if(r==2){
-            t_no *aux = lista;
-            do{
-               printf("> %i \n",(*aux).valor);
-               aux=(*aux).prox;
-            }while(aux!=NULL);
-            system("pause");
+           if(lista==NULL)
+                printf("A lista esta vazia!");
+            else{
+                t_no *aux = lista;
+                do{
+                    printf("> %i \n",(*aux).valor);
+                    aux=(*aux).prox;
+                }while(aux!=NULL);
+                system("pause");
+            }
         }
 
     }while(r<3);
