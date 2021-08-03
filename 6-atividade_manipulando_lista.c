@@ -112,6 +112,7 @@ int main() {
             }
             system("pause");
         }
+        
     }while(r<4);
 
     if(lista!=NULL){ //se tentar liberar com a lista vazia da erro
