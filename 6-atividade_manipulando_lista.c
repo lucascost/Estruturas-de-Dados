@@ -12,8 +12,6 @@ typedef struct no{
     struct no *prox;
 }t_no;
 
-int quant_itens();
-
 int preencher(){
     int n;
     system("cls");
