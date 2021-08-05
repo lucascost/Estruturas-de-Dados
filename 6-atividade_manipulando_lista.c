@@ -4,13 +4,15 @@
 //Exibir formatado - ok
 //Calcular media - ok
 //Contar elementos - ok
-//inserir no final
-//remover no final
+//inserir no final - ok
+//remover no final - ok
 
 typedef struct no{
     int valor;
     struct no *prox;
 }t_no;
+
+int quant_itens();
 
 int preencher(){
     int n;
@@ -30,13 +32,11 @@ t_no *criar_lista (){
     return aux;
 }
 
-t_no *adicionar_no (t_no *no){
-    t_no *aux;
-    aux = malloc(sizeof(t_no));
-    (*aux).valor = preencher();
-    (*aux).prox = no;
-
-    return aux;
+void adicionar_no (t_no *no){
+    while((*no).prox!=NULL){
+        no=(*no).prox;
+    }
+    (*no).prox=criar_lista();
 }
 
 void exibir_lista(t_no *lista){
@@ -46,15 +46,36 @@ void exibir_lista(t_no *lista){
         t_no *aux = lista;
         printf("lista-> ");
         do{
-            printf("[ %2i ]->",(*aux).valor);
+            printf("[ %i ]->",(*aux).valor);
             aux=(*aux).prox;
         }while(aux!=NULL);
         printf("NULL");
     }
 }
 
-t_no *liberar_ponteiros(t_no *no){
+int quant_itens(t_no *aux){
+    if(aux==NULL)
+        return 0;
+    else{
+        int quant=0;
+        do{
+            aux=(*aux).prox;
+            quant++;
+        }while(aux!=NULL);
+        return quant;
+    }
+}
 
+void excluir_ultimo(t_no *lista){
+    int i,quant=quant_itens(lista);
+    for(i=0;i< quant-2;i++){
+        lista=(*lista).prox;
+    }
+    (*lista).prox=NULL;
+    free((*lista).prox);
+}
+
+t_no *liberar_ponteiros(t_no *no){
     if((*no).prox==NULL){
         free((*no).prox);
         return NULL;
@@ -75,47 +96,53 @@ int main() {
         printf("\n\n>1 - Adicionar numero\n");
         printf(">2 - Calcular media \n");
         printf(">3 - Contar elementos \n");
+        printf(">4 - Excluir ultimo elemento\n");
         scanf("%i",&r);
 
-        if(r==1){
-            if(lista==NULL)
-                lista = criar_lista();
-            else
-                lista = adicionar_no(lista);
-        }
-        if(r==2){
-           t_no *aux = lista;
-           float media=0;
-           int quant=0;
-
-           do{
-               media+=(*aux).valor;
-               quant++;
-               aux=(*aux).prox;
-           }while(aux!=NULL);
-
-           media=media/quant;
-           printf("\n\n Media = %.1f\n",media);
-           system("pause");
-        }
-        if(r==3){
-            if(lista==NULL)
-                printf("Lista vazia.\n");
-            else{
+        switch (r) {
+            case 1: 
+                if(lista==NULL)
+                    lista = criar_lista();
+                else
+                    adicionar_no(lista);
+                break;
+            
+            case 2: {
                 t_no *aux = lista;
+                float media=0;
                 int quant=0;
-                do{
-                    aux=(*aux).prox;
-                    quant++;
-                }while(aux!=NULL);
-                printf("\nA lista tem %i elementos.\n",quant);
+
+                if(lista!=NULL){
+                    do{
+                        media+=(*aux).valor;
+                        quant++;
+                        aux=(*aux).prox;
+                    }while(aux!=NULL);
+
+                    media=media/quant;
+                    printf("\nMedia = %.1f\n",media);
+                    system("pause");
+                }
+                break;
             }
-            system("pause");
+            case 3: {
+                int total = quant_itens(lista);
+                printf("\nA lista possui %i elementos.\n",total);
+                system("pause");
+                break;
+            }
+            case 4:
+                if((*lista).prox==NULL){
+                    free((*lista).prox);
+                    lista=NULL;
+                }else
+                    excluir_ultimo(lista);
+                break;
         }
         
-    }while(r<4);
+    }while(r<5);
 
-    if(lista!=NULL){ //se tentar liberar com a lista vazia da erro
+    if(lista!=NULL){
         lista=liberar_ponteiros(lista);
         free(lista);
     }
