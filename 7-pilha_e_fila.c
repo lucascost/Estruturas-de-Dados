@@ -71,11 +71,8 @@ t_lista *adicionar_no(int m,t_lista *aux){
             aux->fim = aux->inicio;
             aux->tamanho++;
         } else {
-            t_no *novo=aux->inicio;
-            while(novo->prox!=NULL)
-                novo=novo->prox;
-            novo->prox = criar_no();
-            aux->fim = novo->prox;
+            aux->fim->prox = criar_no();
+            aux->fim = aux->fim->prox;
             aux->tamanho++;
         }
     }
