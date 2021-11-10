@@ -4,12 +4,13 @@
 <h4> Sumário</h4>
 
 * <h5>Antes de começar</h5>
-
-
+* <h5>TAD's</h5>
+* <h5>Listas</h5>
+<br/><br/>
 
 <h4>Antes de começar</h4>
->Para relembrar alguns assuntos que serão utilizados, com exemplos.
 
+> Relembre alguns assuntos que serão utilizados, com exemplos.
 * Escopo de variáveis
 * Subprogramas com passagem de parâmetro
 * Ponteiros
@@ -140,5 +141,7 @@ Como podemos observar uma variável do tipo ponteiro pode assumir duas "formas" 
 *p : Valor na variável apontada.
 
 p : Endereço da variável apontada. 
+
+<br/>
 
 <center> Em desenvolvimento, mais informações em breve...</center>
