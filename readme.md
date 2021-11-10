@@ -9,6 +9,7 @@
 
 <h4>Antes de começar</h4>
 >Para relembrar alguns assuntos que serão utilizados, com exemplos.
+
 * Escopo de variáveis
 * Subprogramas com passagem de parâmetro
 * Ponteiros
